@@ -44,9 +44,9 @@ const palette = {
 
 const NAV = [
   { label: "Shop All", href: "#shop" },
-  { label: "Cleansers", href: "#collections" },
-  { label: "Serums", href: "#collections" },
-  { label: "Moisturizers", href: "#collections" },
+  { label: "about ", href: "#story" },
+  { label: "testimoni", href: "#testimonials" },
+  { label: "FAQ", href: "#FAQ" },
 ];
 
 const COLLECTIONS = [
@@ -232,17 +232,17 @@ function Pill({ children, tone = "gold" }) {
   const style =
     tone === "gold"
       ? {
-          backgroundColor: "rgba(214,163,58,0.15)",
-          color: palette.gold,
-          borderColor: "rgba(214,163,58,0.30)",
-        }
+        backgroundColor: "rgba(214,163,58,0.15)",
+        color: palette.gold,
+        borderColor: "rgba(214,163,58,0.30)",
+      }
       : tone === "cream"
-      ? {
+        ? {
           backgroundColor: "rgba(255,255,255,0.14)",
           color: "rgba(255,255,255,0.92)",
           borderColor: "rgba(255,255,255,0.18)",
         }
-      : {
+        : {
           backgroundColor: "rgba(0,0,0,0.06)",
           color: "rgba(0,0,0,0.70)",
           borderColor: "rgba(0,0,0,0.10)",
@@ -369,12 +369,12 @@ function Nav({ onOpenProduct }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-white/92 backdrop-blur border-b border-black/5">
+    <header className="sticky top-0 z-40  backdrop-blur border-b border-black/5">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
-              className="text-2xl tracking-tight"
+              className="text-2xl tracking-tight text-black/90"
               style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, color: palette.maroon }}
               style={{ fontFamily: "Playfair Display, serif", fontWeight: 700 }}
             >
@@ -662,7 +662,7 @@ function Collections() {
         <SectionHeader
           eyebrow="CURATED ROUTINES"
           title="Build a ritual that feels intentional"
-          desc="Three essential categories, designed to layer cleanly. Minimal ingredients, maximum feel." 
+          desc="Three essential categories, designed to layer cleanly. Minimal ingredients, maximum feel."
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -825,7 +825,7 @@ function Story() {
                   align="left"
                   eyebrow="OUR STORY"
                   title="Small batches. Big intention."
-                  desc="Karindra is a concept brand built to demonstrate a premium e-commerce landing page. The design emphasizes clarity, trust signals, and a luxurious tone." 
+                  desc="Karindra is a concept brand built to demonstrate a premium e-commerce landing page. The design emphasizes clarity, trust signals, and a luxurious tone."
                 />
                 <div className="mt-6 space-y-3 text-sm leading-7 text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
                   <p>
@@ -915,7 +915,7 @@ function VideoSection() {
         <SectionHeader
           eyebrow="TEXTURE"
           title="A calm, modern ritual"
-          desc="A video-style section with a tasteful overlay. Click to toggle a subtle motion state." 
+          desc="A video-style section with a tasteful overlay. Click to toggle a subtle motion state."
         />
 
         <div className="mt-10">
@@ -969,12 +969,13 @@ function VideoSection() {
 
 function Testimonials() {
   return (
-    <section className="py-14" aria-label="Testimonials">
+    <section className="py-14" aria-label="Testimonials" id="testimonials">
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="REVIEWS"
           title="Loved for feel, not hype"
-          desc="Trust signals are essential. These are dummy testimonials to demonstrate layout and motion." 
+          desc="Trust signals are essential. These are dummy testimonials to demonstrate layout and motion."
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -1030,7 +1031,7 @@ function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="py-14" aria-label="FAQ">
+    <section className="py-14" aria-label="FAQ" id="FAQ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -1200,7 +1201,7 @@ function Footer() {
               <li><a className="hover:text-black/80" href="#shop">Shop</a></li>
               <li><a className="hover:text-black/80" href="#collections">Collections</a></li>
               <li><a className="hover:text-black/80" href="#story">Our Story</a></li>
-              <li><a className="hover:text-black/80" href="#">Shipping & Returns</a></li>
+              <li><a className="hover:text-black/80" href="#shipping">Shipping & Returns</a></li>
             </ul>
           </div>
 
