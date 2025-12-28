@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, hover } from "framer-motion";
 import {
   ShoppingBag,
   Sparkles,
@@ -374,9 +374,9 @@ function Nav({ onOpenProduct }) {
         <div className="h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
-              className="text-2xl tracking-tight text-black/90"
+              className="text-2xl tracking-tight"
               style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, color: palette.maroon }}
-              style={{ fontFamily: "Playfair Display, serif", fontWeight: 700 }}
+              style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, color: palette.maroon }}
             >
               Karindra.
             </div>
@@ -388,7 +388,7 @@ function Nav({ onOpenProduct }) {
                 key={n.label}
                 onClick={() => scrollToId(n.href)}
                 className={cn(
-                  "relative transition",
+                  "relative transition cursor-pointer",
                   idx === 0 ? "font-semibold" : "text-black/55 hover:text-black/75"
                 )}
                 style={idx === 0 ? { color: palette.gold } : undefined}
@@ -518,7 +518,7 @@ function Hero({ onPrimary, onSecondary }) {
                   style={{ fontFamily: "Inter, system-ui", fontWeight: 700 }}
                 >
                   <Sparkles className="w-4 h-4" />
-                  HANDCRAFTED LUXURY
+                  Handcrafted Sustainable Goods
                 </motion.div>
 
                 <motion.h1
@@ -550,9 +550,9 @@ function Hero({ onPrimary, onSecondary }) {
                     lineHeight: 1.9,
                   }}
                 >
-                  Artisanal skincare crafted with purpose. Each product handmade with
+                  Menghadirkan kehidupan kedua bagi kain perca melalui sentuhan desain
                   <br className="hidden sm:block" />
-                  love and eco-conscious intention. Limited, intentional, remarkable.
+                  otentik. Setiap karya diciptakan dengan semangat 'Re-wearing is Caring', mengubah limbah menjadi keindahan yang fungsional dan bernilai seni tinggi."
                 </motion.p>
 
                 <motion.div
@@ -563,7 +563,7 @@ function Hero({ onPrimary, onSecondary }) {
                 >
                   <button
                     onClick={onPrimary}
-                    className="group inline-flex items-center justify-center rounded-full px-10 py-4 text-sm md:text-base shadow-sm"
+                    className="group inline-flex items-center justify-center cursor-pointer rounded-full px-10 py-4 text-sm md:text-base shadow-sm"
                     style={{
                       backgroundColor: palette.gold,
                       color: palette.maroon,
@@ -576,7 +576,7 @@ function Hero({ onPrimary, onSecondary }) {
                   </button>
                   <button
                     onClick={onSecondary}
-                    className="inline-flex items-center justify-center rounded-full px-10 py-4 text-sm md:text-base"
+                    className="inline-flex items-center justify-center rounded-full px-10 py-4 text-sm md:text-base cursor-pointer"
                     style={{
                       border: `2px solid rgba(214,163,58,0.85)`,
                       color: palette.gold,
@@ -597,15 +597,15 @@ function Hero({ onPrimary, onSecondary }) {
                 >
                   <div className="flex items-center gap-2">
                     <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: palette.gold }} />
-                    Handmade with Love
+                    Authentic Design
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: palette.gold }} />
-                    Limited Design
+                    Eco-Conscious
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: palette.gold }} />
-                    100% Eco-Conscious
+                    Handcrafted in Indonesia
                   </div>
                 </motion.div>
 
@@ -1168,65 +1168,75 @@ function Newsletter() {
 
 function Footer() {
   return (
-    <footer className="border-t border-black/5 bg-white">
+    <footer className="border-t border-black/5" style={{ backgroundColor: palette.maroon, color: palette.ivory }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 py-10 sm:grid-cols-3">
           <div>
-            <div className={cn("text-2xl")} style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, color: palette.maroon }} style={{ fontFamily: "Playfair Display, serif", fontWeight: 700 }}>
+            <div className={cn("text-2xl")}
+              style={{ fontFamily: "Playfair Display, serif", fontWeight: 700 }}
+              style={{ fontFamily: "Playfair Display, serif", fontWeight: 700 }}>
               Karindra.
             </div>
-            <div className="mt-3 text-sm leading-7 text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
+            <div className="mt-3 text-sm leading-7 " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
               A modern landing template for premium skincare brands. Clean spacing, strong trust signals, and tasteful motion.
             </div>
             <div className="mt-4 flex items-center gap-3">
-              {[{ Icon: Instagram, label: "Instagram" }, { Icon: Twitter, label: "Twitter" }, { Icon: Facebook, label: "Facebook" }].map(
-                ({ Icon, label }) => (
-                  <button
+              {[
+                {
+                  Icon: Instagram,
+                  label: "Instagram",
+                  href: "https://www.instagram.com/karindra.ecoproject/"
+                },
+
+              ].map(
+                ({ Icon, label, href }) => (
+                  <a
                     key={label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white text-black/60 shadow-sm hover:bg-black/5"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white text-black/60 shadow-sm hover:bg-black/10"
                     aria-label={label}
                   >
                     <Icon className="h-5 w-5" />
-                  </button>
+                  </a>
                 )
               )}
             </div>
           </div>
 
           <div>
-            <div className="text-sm font-semibold text-black/80" style={{ fontFamily: "Inter, system-ui" }}>
+            <div className="text-sm font-semibold " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
               Links
             </div>
-            <ul className="mt-3 space-y-2 text-sm text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
-              <li><a className="hover:text-black/80" href="#shop">Shop</a></li>
-              <li><a className="hover:text-black/80" href="#collections">Collections</a></li>
-              <li><a className="hover:text-black/80" href="#story">Our Story</a></li>
-              <li><a className="hover:text-black/80" href="#shipping">Shipping & Returns</a></li>
+            <ul className="mt-3 space-y-2 text-sm " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
+              <li><a className='hover:text-[#d6a33a] transition-colors' href="#shop">Shop</a></li>
+              <li><a className="hover:text-[#d6a33a] transition-colors" href="#story">About</a></li>
+              <li><a className="hover:text-[#d6a33a] transition-colors" href="#testimonials">testimoni</a></li>
+              <li><a className="hover:text-[#d6a33a] transition-colors" href="#FAQ">FAQ</a></li>
             </ul>
           </div>
 
           <div>
-            <div className="text-sm font-semibold text-black/80" style={{ fontFamily: "Inter, system-ui" }}>
+            <div className="text-sm font-semibold " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
               Contact
             </div>
-            <div className="mt-3 text-sm text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
-              support@karindra.example
+            <div className="mt-3 text-sm" style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
+              <a href="#" className="hover:text-[#d6a33a]">support@karindra.example</a>
             </div>
-            <div className="mt-1 text-sm text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
-              Mon–Fri, 9am–5pm
-            </div>
-            <div className="mt-4 rounded-2xl bg-black/5 p-4 ring-1 ring-black/10">
-              <div className="text-sm font-semibold text-black/80" style={{ fontFamily: "Inter, system-ui" }}>
+
+            <div className="mt-4 rounded-2xl  p-4 ring-1 ring-black/10">
+              <div className="text-sm font-semibold " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
                 Trust & Policies
               </div>
-              <div className="mt-2 text-xs leading-6 text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
+              <div className="mt-2 text-xs leading-6 " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
                 Transparent pricing. 30-day returns. Secure checkout experience.
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-black/5 py-6 text-xs text-black/50" style={{ fontFamily: "Inter, system-ui" }}>
+        <div className="border-t border-black/5 py-6 text-xs " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
           © {new Date().getFullYear()} Karindra (template). All content and products are placeholders.
         </div>
       </div>
@@ -1397,13 +1407,10 @@ export default function KarindraFullLanding() {
         />
 
         <TrustBar />
-        <Collections />
         <Shop onQuickView={(p) => setQuick(p)} />
         <Story />
-        <VideoSection />
         <Testimonials />
         <FAQ />
-        <Newsletter />
       </main>
 
       <Footer />
