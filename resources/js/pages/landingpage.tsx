@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion, hover } from "framer-motion";
 import {
+  Scissors,
   ShoppingBag,
   Sparkles,
   Leaf,
@@ -76,10 +77,10 @@ const COLLECTIONS = [
 const PRODUCTS = [
   {
     id: "p1",
-    name: "Rosewood Cleanse Balm",
-    category: "Cleansers",
-    price: 28,
-    rating: 4.8,
+    name: "Mosaic Travel Sajadah",
+    category: "Prayer Mats",
+    price: 145000, // Harga asli 145 ribu
+    rating: 4.9,
     reviews: 1240,
     badge: "Best Seller",
     image:
@@ -89,14 +90,14 @@ const PRODUCTS = [
       "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1600&q=80",
     ],
-    short: "Melts makeup + sunscreen. Rinses clean.",
-    bullets: ["No fragrance", "Barrier-safe", "Soft finish"],
+    short: "Sajadah travel lipat dengan motif perca estetik yang unik.",
+    bullets: ["Travel-friendly", "Anti-slip", "Mudah dicuci"],
   },
   {
     id: "p2",
-    name: "Golden Hour Vitamin C",
-    category: "Serums",
-    price: 36,
+    name: "Harmony Patchwork Cushion",
+    category: "Home Decor",
+    price: 85000, // Harga asli 85 ribu
     rating: 4.7,
     reviews: 980,
     badge: "New",
@@ -107,14 +108,14 @@ const PRODUCTS = [
       "https://images.unsplash.com/photo-1612810436541-336d3b11f3e5?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1600&q=80",
     ],
-    short: "Brightens and evens tone with gentle stability.",
-    bullets: ["Glow", "Antioxidants", "Non-sticky"],
+    short: "Sarung bantal sofa yang memberi nuansa hangat dan artistik.",
+    bullets: ["Resleting sembunyi", "Jahitan kuat", "Motif 1-of-1"],
   },
   {
     id: "p3",
-    name: "Forest Dew Gel Cream",
-    category: "Moisturizers",
-    price: 34,
+    name: "Heritage Table Runner",
+    category: "Dining",
+    price: 120000, // Harga asli 120 ribu
     rating: 4.9,
     reviews: 760,
     badge: "Top Rated",
@@ -125,14 +126,14 @@ const PRODUCTS = [
       "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1600&q=80",
     ],
-    short: "Cloud-light hydration for all skin types.",
-    bullets: ["Plumps", "Soothes", "No pilling"],
+    short: "Taplak meja panjang dari paduan limbah batik yang elegan.",
+    bullets: ["Tahan panas", "Aksen etnik", "Ramah lingkungan"],
   },
   {
     id: "p4",
-    name: "Saffron Night Elixir",
-    category: "Serums",
-    price: 42,
+    name: "Everyday Eco Tote",
+    category: "Accessories",
+    price: 65000, // Harga asli 65 ribu
     rating: 4.6,
     reviews: 540,
     badge: "Limited",
@@ -143,17 +144,17 @@ const PRODUCTS = [
       "https://images.unsplash.com/photo-1629198688000-71f23e745bda?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1612810436541-336d3b11f3e5?auto=format&fit=crop&w=1600&q=80",
     ],
-    short: "Overnight renewal with botanicals + ceramides.",
-    bullets: ["Restores", "Silky", "Comfort"],
+    short: "Tas belanja luas yang kuat, stylish, dan mengurangi plastik.",
+    bullets: ["Muat banyak", "Dapat dicuci", "Strap nyaman"],
   },
   {
     id: "p5",
-    name: "Petal Milk Cleanser",
-    category: "Cleansers",
-    price: 26,
+    name: "Artisan Zipper Pouch",
+    category: "Essentials",
+    price: 45000, // Harga asli 45 ribu
     rating: 4.5,
     reviews: 420,
-    badge: "Gentle",
+    badge: "Gift Pick",
     image:
       "https://images.unsplash.com/photo-1612810435357-5fddbead2b9f?auto=format&fit=crop&w=1600&q=80",
     gallery: [
@@ -161,17 +162,17 @@ const PRODUCTS = [
       "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1600&q=80",
     ],
-    short: "Creamy cleanse that respects sensitive skin.",
-    bullets: ["pH-balanced", "No stripping", "Calms"],
+    short: "Dompet serbaguna untuk makeup, alat tulis, atau kabel.",
+    bullets: ["Furing dalam", "Ukuran pas", "Motif ceria"],
   },
   {
     id: "p6",
-    name: "Amber Veil Moisture",
-    category: "Moisturizers",
-    price: 38,
+    name: "Quilted Throw Blanket",
+    category: "Home Decor",
+    price: 250000, // Harga asli 250 ribu
     rating: 4.7,
     reviews: 610,
-    badge: "Glow",
+    badge: "Premium",
     image:
       "https://images.unsplash.com/photo-1612810435676-77b3b2c4c8aa?auto=format&fit=crop&w=1600&q=80",
     gallery: [
@@ -179,31 +180,28 @@ const PRODUCTS = [
       "https://images.unsplash.com/photo-1612810436541-336d3b11f3e5?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1600&q=80",
     ],
-    short: "Radiant moisture barrier with satin finish.",
-    bullets: ["Seals", "Comfort", "Soft glow"],
+    short: "Selimut perca tebal yang hangat, dijahit teknik quilting.",
+    bullets: ["Bahan lembut", "Aksen kamar", "Tahan lama"],
   },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Nadia K.",
-    role: "Sensitive skin",
     quote:
-      "Finally a routine that feels luxurious without irritation. The balm cleanser is perfection.",
+      "Akhirnya nemu sajadah yang estetik tapi tetap fungsional. Motifnya bener-bener one-of-a-kind, nggak ada yang nyamain. Bahannya juga empuk dan nyaman buat sujud.",
     rating: 5,
   },
   {
     name: "Arif R.",
-    role: "Combination skin",
     quote:
-      "The gel cream hydrates all day and never pills under sunscreen. Clean, minimal, effective.",
+      "Awalnya ragu karena dari perca, ternyata hasil jahitannya rapi banget! Detail patchwork-nya bikin ruangan jadi lebih artsy dan hangat. Worth every penny.",
     rating: 5,
   },
   {
     name: "Sinta P.",
-    role: "Dry skin",
     quote:
-      "Night elixir makes my skin look rested. Love the eco packaging and transparent ingredients.",
+      "Beli buat kado ulang tahun teman dan dia suka banget. Kemasannya eco-friendly dan ada cerita di balik produknya. Bangga bisa support produk lokal.",
     rating: 5,
   },
 ];
@@ -213,7 +211,12 @@ function cn(...xs) {
 }
 
 function currency(n) {
-  return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+  return n.toLocaleString("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0, // Hapus koma desimal
+    maximumFractionDigits: 0,
+  });
 }
 
 function useBodyLock(locked) {
@@ -340,7 +343,7 @@ function Modal({ open, onClose, title, children }) {
                   {title}
                 </div>
                 <div className="text-xs text-black/50" style={{ fontFamily: "Inter, system-ui" }}>
-                  Premium textures · Clean layout · Trust-first UI
+                  Karya Daur Ulang · Estetik · Ramah Lingkungan
                 </div>
               </div>
               <button
@@ -378,7 +381,7 @@ function Nav({ onOpenProduct }) {
               style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, color: palette.maroon }}
               style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, color: palette.maroon }}
             >
-              Karindra.
+              <a href="#home">Karindra.</a>
             </div>
           </div>
 
@@ -416,7 +419,7 @@ function Nav({ onOpenProduct }) {
             <button
               onClick={onOpenProduct}
               className={cn(
-                "inline-flex items-center justify-center w-10 h-10 rounded-xl border shadow-sm transition hover:bg-black/5"
+                "inline-flex items-center cursor-pointer justify-center w-10 h-10 rounded-xl border shadow-sm transition hover:bg-black/5"
               )}
               style={{ borderColor: "rgba(123,31,42,0.30)", color: palette.maroon }}
               aria-label="Quick view"
@@ -623,9 +626,21 @@ function Hero({ onPrimary, onSecondary }) {
 
 function TrustBar() {
   const items = [
-    { icon: ShieldCheck, title: "Secure checkout", desc: "Trust-first UI · Encrypted" },
-    { icon: Truck, title: "Fast delivery", desc: "Free shipping over $60" },
-    { icon: RotateCcw, title: "Easy returns", desc: "30-day guarantee" },
+    {
+      icon: Scissors,
+      title: "Handcrafted",
+      desc: "Dijahit manual penuh detail"
+    },
+    {
+      icon: Leaf,
+      title: "Zero Waste",
+      desc: "Mengurangi limbah tekstil"
+    },
+    {
+      icon: Sparkles,
+      title: "Hygienic",
+      desc: "Disterilkan"
+    },
   ];
 
   return (
@@ -772,14 +787,14 @@ function ProductCard({ p, onQuickView }) {
         <div className="mt-5 flex items-center justify-between">
           <button
             onClick={onQuickView}
-            className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm ring-1 ring-black/10 hover:bg-black/5"
+            className="inline-flex text-black cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm ring-1 ring-black/10 hover:bg-black/5"
             style={{ fontFamily: "Inter, system-ui" }}
           >
             Quick View
             <ChevronRight className="h-4 w-4" />
           </button>
           <button
-            className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm cursor-pointer"
             style={{ backgroundColor: palette.maroon, color: "white", fontFamily: "Inter, system-ui" }}
           >
             Add
@@ -797,8 +812,8 @@ function Shop({ onQuickView }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="SHOP"
-          title="Modern essentials, handcrafted feel"
-          desc="These are dummy products for the landing page. Replace with your real catalog when ready."
+          title="Satu Motif, Satu Cerita."
+          desc="Jelajahi koleksi sajadah dan aksesori rumah yang tiada duanya. Karena dibuat dari perca pilihan, setiap produk di sini adalah karya seni tunggal yang tidak akan Anda temukan di tempat lain."
         />
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -824,22 +839,34 @@ function Story() {
                 <SectionHeader
                   align="left"
                   eyebrow="OUR STORY"
-                  title="Small batches. Big intention."
-                  desc="Karindra is a concept brand built to demonstrate a premium e-commerce landing page. The design emphasizes clarity, trust signals, and a luxurious tone."
+                  title="Seni dalam Setiap Perca."
+                  desc="Karindra lahir dari keyakinan sederhana: bahwa kain sisa (perca) layak mendapatkan kesempatan kedua. Di tengah industri fashion yang serba cepat, kami memilih untuk melambat—mengumpulkan, memilah, dan merangkai kembali limbah tekstil menjadi karya fungsional yang bernilai seni."
                 />
                 <div className="mt-6 space-y-3 text-sm leading-7 text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
                   <p>
-                    We believe skincare should feel like a ritual: minimal steps, beautiful textures, and a calm, confident finish.
+                    Setiap produk Karindra bukan sekadar barang, melainkan wujud nyata dari semangat 'Consume Less, Create More'.
                   </p>
                   <p>
-                    Our packaging uses eco-considerate materials and intentional design—so your shelf looks as good as your skin feels.
+                    Kami memadukan kreativitas artisan lokal dengan komitmen menjaga bumi, satu jahitan demi satu jahitan.
                   </p>
                   <div className="mt-6 grid gap-3 sm:grid-cols-2">
                     {[
-                      { title: "Ingredient clarity", desc: "Simple labels, transparent notes" },
-                      { title: "Eco-considerate", desc: "Reduced inks · recyclable" },
-                      { title: "Handmade feel", desc: "Small-batch textures" },
-                      { title: "Trust signals", desc: "Clear policies up front" },
+                      {
+                        title: "Material Terkurasi",
+                        desc: "Perca pilihan, steril & higienis.",
+                      },
+                      {
+                        title: "Ramah Lingkungan",
+                        desc: "Mengurangi limbah tekstil.",
+                      },
+                      {
+                        title: "Sentuhan Artisan",
+                        desc: "Dijahit tangan dengan teliti.",
+                      },
+                      {
+                        title: "Desain Otentik",
+                        desc: "Motif unik, tiada duanya.",
+                      },
                     ].map((x) => (
                       <div key={x.title} className="rounded-2xl bg-black/5 p-4 ring-1 ring-black/10">
                         <div className="text-sm font-semibold text-black/80">{x.title}</div>
@@ -973,9 +1000,9 @@ function Testimonials() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="REVIEWS"
-          title="Loved for feel, not hype"
-          desc="Trust signals are essential. These are dummy testimonials to demonstrate layout and motion."
+          eyebrow="TESTIMONIALS"
+          title="Cerita Di Balik Karya"
+          desc="Kepuasan pelanggan adalah prioritas kami. Berikut adalah pengalaman mereka yang telah menjadi bagian dari gerakan #ConsumeLessCreateMore."
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -1011,20 +1038,20 @@ function Testimonials() {
 function FAQ() {
   const faqs = [
     {
-      q: "Is this a real store?",
-      a: "This page is a design + UI template. All products and images are placeholders to show structure and interactions.",
+      q: "Apakah bahan perca yang digunakan bersih dan higienis?",
+      a: "Tentu saja. Seluruh bahan kain sisa produksi telah melalui proses penyortiran ketat, pencucian (sterilisasi), dan setrika uap sebelum dijahit menjadi produk baru. Kami memastikan produk sampai ke tangan Anda dalam keadaan bersih.",
     },
     {
-      q: "Can I plug this into Shopify / headless?",
-      a: "Yes. Replace dummy data with your catalog API (Shopify Storefront, Medusa, Commerce Layer, etc.).",
+      q: "Apakah saya bisa mendapatkan motif yang sama persis jika stok habis?",
+      a: "Karena kami menerapkan prinsip Authentic Design, setiap produk adalah 'One of a Kind' (satu-satunya). Anda mungkin tidak mendapatkan motif yang 100% sama, namun kami menjamin nuansa warna dan kualitas jahitan yang serupa.",
     },
     {
-      q: "Where do the images come from?",
-      a: "Images are loaded from Unsplash URLs (dummy). Swap them with your assets for production.",
+      q: "Bagaimana cara mencuci dan merawat produk Karindra?",
+      a: "Kami sarankan mencuci secara manual (hand wash) atau menggunakan mesin cuci mode lembut (delicate) dengan air dingin. Hindari pemutih agar warna kain perca tetap terjaga.",
     },
     {
-      q: "Do you support accessibility?",
-      a: "The layout uses semantic sections, labels, and keyboard-close for the modal. You can expand ARIA as needed.",
+      q: "Apakah menerima pesanan khusus (Custom Order) atau suvenir?",
+      a: "Ya, kami menerima pesanan dalam jumlah besar untuk suvenir perusahaan atau acara khusus dengan semangat 'Consume Less Create More'. Silakan hubungi kami untuk diskusi lebih lanjut.",
     },
   ];
 
@@ -1039,22 +1066,22 @@ function FAQ() {
               <SectionHeader
                 align="left"
                 eyebrow="FAQ"
-                title="Clear answers build trust"
-                desc="A simple accordion pattern with clean spacing and modern typography."
+                title="Punya Pertanyaan?"
+                desc="Temukan jawaban mengenai proses pembuatan, perawatan produk, dan cara kami menjaga standar kualitas Karindra Ecoproject."
               />
               <div className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/10">
                 <div className="space-y-2 text-sm leading-7 text-black/60" style={{ fontFamily: "Inter, system-ui" }}>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                    Transparent totals
+                    Jaminan Kebersihan (Hygienic)
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                    30-day returns
+                    Desain Autentik (1 of 1)
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                    Support contact shown
+                    Material Ramah Lingkungan
                   </div>
                 </div>
               </div>
@@ -1071,12 +1098,12 @@ function FAQ() {
                       onClick={() => setOpen(isOpen ? -1 : i)}
                       className={cn(
                         "w-full rounded-2xl bg-white p-5 text-left shadow-sm ring-1 ring-black/10",
-                        "hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-black/20"
+                        "hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-black/20 cursor-pointer"
                       )}
                     >
-                      <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start justify-between gap-4 ">
                         <div>
-                          <div className="text-sm font-semibold text-black/85" style={{ fontFamily: "Inter, system-ui" }}>
+                          <div className="text-sm font-semibold text-black/85 " style={{ fontFamily: "Inter, system-ui" }}>
                             {f.q}
                           </div>
                           <AnimatePresence initial={false}>
@@ -1224,15 +1251,6 @@ function Footer() {
             <div className="mt-3 text-sm" style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
               <a href="#" className="hover:text-[#d6a33a]">support@karindra.example</a>
             </div>
-
-            <div className="mt-4 rounded-2xl  p-4 ring-1 ring-black/10">
-              <div className="text-sm font-semibold " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
-                Trust & Policies
-              </div>
-              <div className="mt-2 text-xs leading-6 " style={{ fontFamily: "Inter, system-ui", color: palette.ivory }}>
-                Transparent pricing. 30-day returns. Secure checkout experience.
-              </div>
-            </div>
           </div>
         </div>
 
@@ -1328,16 +1346,14 @@ function QuickView({ product, onClose }) {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-3">
-                {[{ icon: ShieldCheck, label: "Secure" }, { icon: Truck, label: "Fast" }, { icon: RotateCcw, label: "Returns" }].map(
+                {[{ icon: ShieldCheck, label: "Transaksi Aman" }, { icon: Truck, label: "Siap Kirim" }, { icon: RotateCcw, label: "Returns" }].map(
                   ({ icon: Icon, label }) => (
                     <div key={label} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/10">
                       <Icon className="h-5 w-5 text-black/70" />
                       <div className="mt-2 text-xs font-semibold text-black/70" style={{ fontFamily: "Inter, system-ui" }}>
                         {label}
                       </div>
-                      <div className="mt-1 text-xs text-black/50" style={{ fontFamily: "Inter, system-ui" }}>
-                        Trust cues
-                      </div>
+
                     </div>
                   )
                 )}
@@ -1345,14 +1361,14 @@ function QuickView({ product, onClose }) {
 
               <div className="flex flex-col gap-3 sm:flex-row">
                 <button
-                  className="flex-1 rounded-full px-5 py-3 text-sm font-semibold shadow-sm"
+                  className="flex-1 rounded-full px-5 py-3 text-sm font-semibold shadow-sm cursor-pointer"
                   style={{ backgroundColor: palette.maroon, color: "white", fontFamily: "Inter, system-ui" }}
                 >
                   Add to bag
                 </button>
                 <button
                   onClick={onClose}
-                  className="flex-1 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-black/70 shadow-sm hover:bg-black/5"
+                  className="flex-1 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold cursor-pointer text-black/70 shadow-sm hover:bg-black/5"
                   style={{ fontFamily: "Inter, system-ui" }}
                 >
                   Keep browsing
@@ -1360,7 +1376,7 @@ function QuickView({ product, onClose }) {
               </div>
 
               <div className="text-xs text-black/50" style={{ fontFamily: "Inter, system-ui" }}>
-                This is a UI demo (dummy products). Integrate real checkout later.
+                Karena buatan tangan, motif yang kamu lihat adalah satu-satunya (1 of 1).
               </div>
             </div>
           </div>
