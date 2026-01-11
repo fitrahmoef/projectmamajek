@@ -22,6 +22,7 @@ import {
   Facebook,
   CheckCircle2,
   X,
+  User,
 } from "lucide-react";
 
 /**
@@ -408,13 +409,7 @@ function Nav({ onOpenProduct }) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setOpen((v) => !v)}
-              className="md:hidden inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-3 py-2 text-sm font-semibold text-black/70 shadow-sm hover:bg-black/5"
-              style={{ fontFamily: "Inter, system-ui" }}
-            >
-              Menu
-            </button>
+
 
             <button
               onClick={onOpenProduct}
@@ -427,6 +422,19 @@ function Nav({ onOpenProduct }) {
             >
               <ShoppingBag className="w-5 h-5" />
             </button>
+
+
+            <a
+              href="/login" // Ganti sesuai routing kamu
+              className={cn(
+                "hidden md:inline-flex items-center cursor-pointer justify-center w-10 h-10 rounded-xl border shadow-sm transition hover:bg-black/5"
+              )}
+              style={{ borderColor: "rgba(123,31,42,0.30)", color: palette.maroon }}
+              aria-label="Login Account"
+              title="Login"
+            >
+              <User className="w-5 h-5" />
+            </a>
           </div>
         </div>
 
